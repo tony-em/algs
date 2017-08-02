@@ -1,4 +1,4 @@
-package radixlogic;
+package algs;
 
 import sun.misc.Queue;
 import java.util.Stack;
