@@ -1,4 +1,4 @@
-package trees;
+package algs.trees;
 
 public class BinaryTree {
 

@@ -1,4 +1,4 @@
-package algs;
+package algs.radix_converter;
 
 import sun.misc.Queue;
 import java.util.Stack;

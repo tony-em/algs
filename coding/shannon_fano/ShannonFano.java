@@ -1,18 +1,17 @@
-package algs.shannon_fano;
+package algs.coding.shannon_fano;
 
-import algs.Symbol;
+import algs.coding.Symbol;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ShannonFano {
+public abstract class ShannonFano {
 
     public static ArrayList<Symbol> startShannonFano(ArrayList<Symbol> weightsList) {
         ArrayList<Symbol> result = new ArrayList<>(weightsList);
         Collections.sort(result);
 
         dividingAndCodingShannonFano(result);
-
         return result;
     }
 

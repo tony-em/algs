@@ -1,11 +1,11 @@
-package algs.haffman;
+package algs.coding.haffman;
 
-import algs.Symbol;
+import algs.coding.Symbol;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Haffman {
+public abstract class Haffman {
 
     public static ArrayList<Symbol> startHaffman(ArrayList<Symbol> weightsList) {
         ArrayList<HaffmanNode> nodes = new ArrayList<>();

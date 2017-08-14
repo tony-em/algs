@@ -4,58 +4,27 @@ import java.util.ArrayList;
 
 public class Vertex {
 
-    private int numValue;
-    private String strValue;
+    private String key;
 
-    public Vertex(int numValue) {
-        this.numValue = numValue;
+    public Vertex(String key) {
+        this.key = key;
     }
 
-    public Vertex(String strValue) {
-        this.strValue = strValue;
+    public String getKey() {
+        return key;
     }
 
-    public int getNumValue() {
-        return numValue;
+    public void setKey(String strValue) {
+        this.key = strValue;
     }
 
-    public String getStrValue() {
-        return strValue;
-    }
+    public static ArrayList<Vertex> initVertexList(String[] keys) {
+        ArrayList<Vertex> vertexList = new ArrayList<>(keys.length);
 
-    public String getValueInStringFormat() {
-        return (strValue == null) ? String.valueOf(numValue) : strValue;
-    }
-
-    public void setNumValue(int numValue) {
-        strValue = null;
-        this.numValue = numValue;
-    }
-
-    public void setStrValue(String strValue) {
-        numValue = 0;
-        this.strValue = strValue;
-    }
-
-    public static ArrayList<Vertex> initGetVertexList(int[] values) {
-        ArrayList<Vertex> vertexList = new ArrayList<>(values.length);
-
-        for (int val : values) {
+        for (String val: keys) {
             vertexList.add(new Vertex(val));
         }
 
         return vertexList;
     }
-
-    public static ArrayList<Vertex> initGetVertexList(String[] values) {
-        ArrayList<Vertex> vertexList = new ArrayList<>(values.length);
-
-        for (String val: values) {
-            vertexList.add(new Vertex(val));
-        }
-
-        return vertexList;
-    }
-
-
 }

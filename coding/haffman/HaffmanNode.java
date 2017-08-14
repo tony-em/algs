@@ -1,4 +1,4 @@
-package algs.haffman;
+package algs.coding.haffman;
 
 class HaffmanNode implements Comparable<HaffmanNode> {
 

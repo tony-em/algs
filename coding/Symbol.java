@@ -1,4 +1,4 @@
-package algs;
+package algs.coding;
 
 public class Symbol implements Comparable<Symbol> {
 

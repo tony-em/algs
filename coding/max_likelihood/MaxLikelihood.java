@@ -1,4 +1,4 @@
-package algs.max_likelihood;
+package algs.coding.max_likelihood;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,6 @@ public class MaxLikelihood {
 
     public static ArrayList<String> getXORCodesCombinations(ArrayList<Integer> codes) {
         codes = getXORCodesCombinations(codes, codes.size());
-
         return correctCapacityCodes(codes, getCapacityCode(codes));
     }
 
@@ -87,7 +86,6 @@ public class MaxLikelihood {
         }
 
         System.out.println(list);
-
         return count;
     }
 
