@@ -13,6 +13,7 @@ public abstract class Notations {
             BL = '(',
             BR = ')';
 
+
     static final char[] operators = new char[]{ADD, SUB, DIV, MUL, POW, BL, BR};
 
     private enum NotationType {
@@ -56,6 +57,14 @@ public abstract class Notations {
     }
 
     private static String parseExpression(String infixExpression, NotationType type) {
+       infixExpression = infixExpression
+                .replaceAll(" ", "")
+                .replaceAll("\\(-", "(0-");
+
+        if (infixExpression.charAt(0) == '-') {
+            infixExpression = "0".concat(infixExpression);
+        }
+
         char[] symbols = infixExpression.toCharArray();
         Stack<Character> stack = new Stack<>();
         StringBuilder str = new StringBuilder();
@@ -103,17 +112,15 @@ public abstract class Notations {
         }
 
         if (bracketsCounter != 0) throwException("Brackets are incorrectly placed!");
+        if (isEndOperand) {
+            appendStr("", " ", str, type);
+        }
 
         while (!stack.isEmpty()) {
-            if (stack.size() != 1) {
-                appendStr(Character.toString(stack.pop()), " ", str, type);
-            } else {
-                if (isEndOperand) {
-                    appendStr("", " ", str, type);
-                    isEndOperand = false;
-                }
-
+            if (stack.size() == 1) {
                 appendStr(Character.toString(stack.pop()), "", str, type);
+            } else {
+                appendStr(Character.toString(stack.pop()), " ", str, type);
             }
         }
 
