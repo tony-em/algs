@@ -29,7 +29,7 @@ public class GoldenSection {
                 if (flag2) {
                     x2 = x0 + (t1 * (x3 - x0));
                     arg[0] = x2;
-                    f2 = f.calculate(new double[]{x2});
+                    f2 = f.calculate(arg);
                     flag2 = false;
                 }
             }

@@ -13,10 +13,10 @@ public class Function {
     }
 
     public interface Expression {
-        double expression(double[] args);
+        double evaluate(double[] args);
     }
 
     public double calculate(double[] args) {
-        return expression.expression(args);
+        return expression.evaluate(args);
     }
 }
