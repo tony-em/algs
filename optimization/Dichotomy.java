@@ -2,7 +2,7 @@ package algs.optimization;
 
 import java.util.Arrays;
 
-public class Dichotomy {
+public abstract class Dichotomy {
 
     public static double startDichotomy(double[] interval, double delta, double eps, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);

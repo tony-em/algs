@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class MaxLikelihood {
+public abstract class MaxLikelihood {
 
     public static ArrayList<String> getXORCodesCombinations(ArrayList<Integer> codes) {
         codes = getXORCodesCombinations(codes, codes.size());

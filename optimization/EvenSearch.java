@@ -2,7 +2,7 @@ package algs.optimization;
 
 import java.util.Arrays;
 
-public class EvenSearch {
+public abstract class EvenSearch {
 
     public static double startEvenSearch(double[] interval, double h, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);

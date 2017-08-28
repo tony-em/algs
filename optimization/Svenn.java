@@ -2,7 +2,7 @@ package algs.optimization;
 
 import java.util.Arrays;
 
-public class Svenn {
+public abstract class Svenn {
 
     public static double[] startSvenn(double x0, double h, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);

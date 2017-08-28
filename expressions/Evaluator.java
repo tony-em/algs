@@ -8,24 +8,33 @@ public abstract class Evaluator {
         String[] symbols = Notations.convertInfixToPostfix(strExpression).split(" ");
         Stack<String> stack = new Stack<>();
 
+        boolean nonCalcFlag = false;
         for (String s : symbols) {
             char operator = s.toCharArray()[0];
             if (!Notations.equalsSymbolWithOperator(operator)) {
                 stack.push(s);
             } else {
-                stack.push(String.valueOf(eval(stack.pop(), stack.pop(), operator)));
+                String s2 = stack.pop(), s1 = stack.pop();
+                double op1, op2;
+                try {
+                    op1 = Double.valueOf(s1);
+                    op2 = Double.valueOf(s2);
+                    s1 = String.valueOf(getResultOperation(operator, op1, op2));
+                } catch (Exception e1) {
+                    s1 = s1 + " " + s2 + " " + operator;
+                    if (!nonCalcFlag) {
+                        nonCalcFlag = true;
+                    }
+                }
+
+                stack.push(s1);
             }
         }
 
-        if (stack.size() == 1)
-            return stack.pop();
-        else {
-            StringBuilder sb = new StringBuilder();
-            while (stack.size() != 0) {
-                sb.insert(0, stack.pop());
-            }
-
-            return sb.toString();
+        try {
+            return (nonCalcFlag) ? Notations.convertPostfixToInfix(stack.pop()) : stack.pop();
+        } catch (Exception e) {
+            throw new NullPointerException("Incorrect input expression");
         }
     }
 
@@ -38,6 +47,10 @@ public abstract class Evaluator {
             return operand1 + " " + operand2 + " " + operator;
         }
 
+        return String.valueOf(getResultOperation(operator, op1, op2));
+    }
+
+    public static double getResultOperation(char operator, double op1, double op2) {
         switch (operator) {
             case Notations.ADD:
                 op1 += op2;
@@ -54,10 +67,8 @@ public abstract class Evaluator {
             case Notations.POW:
                 op1 = Math.pow(op1, op2);
                 break;
-            default:
-                return null;
         }
 
-        return String.valueOf(op1);
+        return op1;
     }
 }

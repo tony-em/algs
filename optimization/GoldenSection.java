@@ -2,7 +2,7 @@ package algs.optimization;
 
 import java.util.Arrays;
 
-public class GoldenSection {
+public abstract class GoldenSection {
 
     public static double startGoldenSection(double[] interval, double eps, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);

@@ -3,7 +3,7 @@ package algs.optimization;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Fibonacci {
+public abstract class Fibonacci {
 
     public static double startFibonacci(double[] interval, double eps, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);

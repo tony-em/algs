@@ -20,7 +20,7 @@ public abstract class Notations {
         PREFIX, INFIX, POSTFIX
     }
 
-    private static int getOperatorPriority(char operator) {
+    public static int getOperatorPriority(char operator) {
         switch (operator) {
             case ADD:
             case SUB:
@@ -38,7 +38,7 @@ public abstract class Notations {
         }
     }
 
-    static boolean equalsSymbolWithOperator(char symbol) {
+    public static boolean equalsSymbolWithOperator(char symbol) {
         for (int i = 0; i < operators.length; i++) {
             if (symbol == operators[i]) {
                 return true;
@@ -54,6 +54,46 @@ public abstract class Notations {
 
     public static String convertInfixToPrefix(String infixExpression) {
         return parseExpression(infixExpression, NotationType.PREFIX);
+    }
+
+    public static String convertPostfixToInfix(String postfixExpression) {
+        return parseToInfix(postfixExpression, NotationType.POSTFIX);
+    }
+
+    public static String convertPrefixToInfix(String prefixExpression) {
+        return parseToInfix(prefixExpression, NotationType.PREFIX);
+    }
+
+    private static String parseToInfix(String expression, NotationType type) {
+        String[] symbols = expression.split(" ");
+        Stack<String> stack = new Stack<>();
+
+        for (int i = (type == NotationType.POSTFIX) ? 0 : symbols.length - 1; ; i = (type == NotationType.POSTFIX) ? ++i : --i) {
+            if ((type == NotationType.POSTFIX && i > symbols.length - 1) || (type == NotationType.PREFIX && i < 0))
+                break;
+
+            char s = symbols[i].toCharArray()[0];
+            if (!equalsSymbolWithOperator(s)) {
+                stack.push(symbols[i]);
+            } else {
+                String op2 = stack.pop(), op1 = stack.pop();
+
+                if (type == NotationType.POSTFIX) {
+                    stack.push("(" + op1 + s + op2 + ")");
+                } else {
+                    stack.push("(" + op2 + s + op1 + ")");
+                }
+            }
+        }
+
+        try {
+            String s = stack.pop();
+            return s.substring(1, s.length() - 1);
+        } catch (Exception e) {
+            throwException("Incorrect input notation type");
+        }
+
+        return null;
     }
 
     private static String parseExpression(String infixExpression, NotationType type) {

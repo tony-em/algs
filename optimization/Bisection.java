@@ -2,7 +2,7 @@ package algs.optimization;
 
 import java.util.Arrays;
 
-public class Bisection {
+public abstract class Bisection {
 
     public static double startBisection(double[] interval, double eps, Function.Expression expression, Function.TypeLocalization type) {
         Function f = new Function(expression);
